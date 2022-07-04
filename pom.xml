@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.mengtu</groupId>
+    <artifactId>kaichi-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>kaichi</name>
+    <description>Server for mengtu backend.</description>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>web</module>
+        <module>util</module>
+        <module>biz/impl</module>
+        <module>core/user</module>
+        <module>core/organization</module>
+        <module>core/linkshow</module>
+        <module>core/linkpoint</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 子模块 start -->
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-user</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-organization</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-linkshow</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-linkpoint</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--web 层-->
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-web</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--biz 层-->
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-service-impl</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!-- 子模块 end -->
+
+            <!-- 二方包 start -->
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>util</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!-- 二方包 end -->
+
+            <!-- 三方包 start -->
+            <!--Druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.2.8</version>
+            </dependency>
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.80</version>
+            </dependency>
+            <!-- hibernate validator-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>7.0.4.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.28</version>
+            </dependency>
+            <!-- 三方包 end -->
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

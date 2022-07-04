@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--密码校验器（基础规则）-->
+    <bean id="passwordBasicValidator" class="com.mengtu.kaichi.user.validate.PasswordBasicValidator"/>
+    <!--密码校验器（强度）-->
+    <bean id="passwordStrengthValidator" class="com.mengtu.kaichi.user.validate.PasswordStrengthValidator"/>
+    <!--用户名基础校验器-->
+    <bean id="userNameBasicValidator" class="com.mengtu.kaichi.user.validate.UserNameBasicValidator"/>
+
+    <!--用户注册校验器-->
+    <bean id="userRegisterValidator" class="com.mengtu.util.validator.MultiValidator">
+        <property name="validatorList">
+            <list>
+                <ref bean="userNameBasicValidator"/>
+                <ref bean="passwordBasicValidator"/>
+                <ref bean="passwordStrengthValidator"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--密码规则校验器-->
+    <bean id="passwordValidator" class="com.mengtu.util.validator.MultiValidator">
+        <property name="validatorList">
+            <list>
+                <ref bean="passwordBasicValidator"/>
+                <ref bean="passwordStrengthValidator"/>
+            </list>
+        </property>
+    </bean>
+</beans>
