@@ -1,0 +1,101 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-form-post-size: 20MB
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.71.161.213:3306/mt-backend?serverTimezone=GMT%2b8
+    username: mt-backend
+    password: XB3ZnWMhrySafxJz
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      validation-query: select 'x'
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,slf4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      use-global-data-source-stat: true
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        allow: "*"
+        deny:
+        reset-enable: false
+  jackson:
+    time-zone: GMT+8
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  banner:
+    charset: UTF-8
+  messages:
+    encoding: UTF-8
+  jpa:
+    database: MYSQL
+    show-sql: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+management:
+  server:
+    servlet:
+      context-path: "/kaichi"
+    port: 404
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/monitor"
+
+info:
+  kaichi:
+    version: 0.1
+
+kaichi:
+  user:
+    avatar:
+      max-size: 1048576
+  push:
+    wechat:
+      serverchan:
+        sckey: "REDUCTED"
+    sms:
+      token: "svZM41#/"
+  webapp:
+    admin_token: "7F6903CE15CBB3A17227587681DDEAEDC0E1B7623F8CF85A03EBDAD298BFB6D5"
+  util:
+    verificationcode:
+      lifetime: 5
+    baidu:
+      iputil:
+        apikey: "REDUCTED"
+  obs:
+    endpoint: "obs.cn-east-3.myhuaweicloud.com"
+    access_key_id: "QOFV1PXH835MG55DSJEH"
+    secret_access_key: "pRwHCaimogk3RnAnI7a2XIe6NAP8xbVN0DsYIVjD"
