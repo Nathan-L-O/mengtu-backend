@@ -1,0 +1,59 @@
+{
+  "properties": [
+    {
+      "name": "kaichi.push.wechat.serverchan.sckey",
+      "type": "java.lang.String",
+      "description": "ServerChan API key."
+    },
+    {
+      "name": "kaichi.util.baidu.ip-util.apikey",
+      "type": "java.lang.String",
+      "description": "Baidu IP to location API key."
+    },
+    {
+      "name": "kaichi.util.upyun.uss.operaterpassword",
+      "type": "java.lang.String",
+      "description": "USS 操作员密码."
+    },
+    {
+      "name": "kaichi.util.verificationcode.lifetime",
+      "type": "java.lang.Integer",
+      "description": "verification code lifetime."
+    },
+    {
+      "name": "kaichi.user.avatar.max-size",
+      "type": "java.lang.Integer",
+      "description": "User avatar max size."
+    },
+    {
+      "name": "kaichi.util.oss.endpoint",
+      "type": "java.lang.String",
+      "description": "OSS Endpoint."
+    },
+    {
+      "name": "kaichi.push.sms.token",
+      "type": "java.lang.String",
+      "description": "短信接口授权 token."
+    },
+    {
+      "name": "kaichi.obs.endpoint",
+      "type": "java.lang.String",
+      "description": "OBS Endpoint."
+    },
+    {
+      "name": "kaichi.obs.access_key_id",
+      "type": "java.lang.String",
+      "description": "OBS Access Key ID."
+    },
+    {
+      "name": "kaichi.obs.secret_access_key",
+      "type": "java.lang.String",
+      "description": "OBS Secret Access Key."
+    },
+    {
+      "name": "kaichi.webapp.admin_token",
+      "type": "java.lang.String",
+      "description": "WebApplication admin token."
+    }
+  ]
+}
