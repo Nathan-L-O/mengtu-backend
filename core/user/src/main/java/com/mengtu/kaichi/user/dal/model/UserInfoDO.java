@@ -1,5 +1,6 @@
 package com.mengtu.kaichi.user.dal.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@TableName("user_info")
 @Table(name = "user_info",
         indexes = {
                 @Index(name = "uk_user_info_id_user_id", columnList = "user_info_id, user_id", unique = true),

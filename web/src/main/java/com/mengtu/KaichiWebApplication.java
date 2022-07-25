@@ -3,6 +3,7 @@ package com.mengtu;
 import com.mengtu.kaichi.serviceimpl.common.init.InitService;
 import com.mengtu.util.tools.DateUtil;
 import com.mengtu.util.tools.LoggerUtil;
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

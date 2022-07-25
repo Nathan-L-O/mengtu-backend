@@ -29,6 +29,7 @@
         <module>core/organization</module>
         <module>core/linkshow</module>
         <module>core/linkpoint</module>
+        <module>core/label</module>
     </modules>
 
     <dependencyManagement>
@@ -52,6 +53,11 @@
             <dependency>
                 <groupId>com.mengtu</groupId>
                 <artifactId>kaichi-linkpoint</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mengtu</groupId>
+                <artifactId>kaichi-label</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!--web 层-->
@@ -99,6 +105,11 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.28</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.4.3.1</version>
             </dependency>
             <!-- 三方包 end -->
 

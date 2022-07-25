@@ -10,36 +10,41 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kaichi-service-impl</artifactId>
+    <artifactId>kaichi-label</artifactId>
     <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.mengtu</groupId>
-            <artifactId>kaichi-user</artifactId>
+            <artifactId>util</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mengtu</groupId>
-            <artifactId>kaichi-label</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.mengtu</groupId>
-            <artifactId>kaichi-organization</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.mengtu</groupId>
-            <artifactId>kaichi-linkshow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.mengtu</groupId>
-            <artifactId>kaichi-linkpoint</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>

@@ -2,9 +2,11 @@ package com.mengtu.kaichi.serviceimpl.user.service;
 
 import com.mengtu.kaichi.serviceimpl.common.OperateContext;
 import com.mengtu.kaichi.serviceimpl.user.request.CommonUserRequest;
+import com.mengtu.kaichi.user.dal.model.UserInfoDO;
 import com.mengtu.kaichi.user.model.CommonUser;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * 用户服务
@@ -105,5 +107,8 @@ public interface UserService {
      * @param avatarFile
      */
     void avatarUpdate(CommonUserRequest request, File avatarFile);
+
+    /*后台查询所有用户信息*/
+    List<UserInfoDO> selectAll();
 }
 

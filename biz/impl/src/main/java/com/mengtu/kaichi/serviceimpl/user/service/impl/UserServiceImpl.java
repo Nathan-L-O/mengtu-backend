@@ -4,8 +4,10 @@ import com.mengtu.kaichi.serviceimpl.common.OperateContext;
 import com.mengtu.kaichi.serviceimpl.common.constant.UserRequestExtInfoKey;
 import com.mengtu.kaichi.serviceimpl.user.request.CommonUserRequest;
 import com.mengtu.kaichi.serviceimpl.user.service.UserService;
+import com.mengtu.kaichi.user.dal.model.UserInfoDO;
 import com.mengtu.kaichi.user.dal.service.UserRepoService;
 import com.mengtu.kaichi.user.manager.UserManager;
+import com.mengtu.kaichi.user.mapper.UserMapper;
 import com.mengtu.kaichi.user.model.CommonUser;
 import com.mengtu.kaichi.user.model.basic.UserInfoBO;
 import com.mengtu.kaichi.user.model.basic.perm.UserBO;
@@ -21,7 +23,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 
@@ -51,6 +55,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private MultiValidator<UserManageRequest> userRegisterValidator;
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 头像 OBS 地址
@@ -160,6 +167,11 @@ public class UserServiceImpl implements UserService {
         } catch (Exception ignored) {
         }
         obsUtil.uploadFile(avatarFile, AVATAR_LOCATION, hash + originalFileName.substring(originalFileName.lastIndexOf(".")));
+    }
+
+    @Override
+    public List<UserInfoDO> selectAll() {
+        return userMapper.selectList(null);
     }
 
 }

@@ -18,6 +18,8 @@ import com.mengtu.kaichi.serviceimpl.organization.service.OrganizationService;
 import com.mengtu.kaichi.serviceimpl.user.builder.CommonUserRequestBuilder;
 import com.mengtu.kaichi.serviceimpl.user.request.CommonUserRequest;
 import com.mengtu.kaichi.serviceimpl.user.service.UserService;
+import com.mengtu.kaichi.user.dal.convert.EntityConverter;
+import com.mengtu.kaichi.user.dal.model.UserInfoDO;
 import com.mengtu.kaichi.user.enums.UserErrorCode;
 import com.mengtu.kaichi.user.model.basic.UserInfoBO;
 import com.mengtu.kaichi.util.IPUtil;
@@ -41,7 +43,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -541,4 +545,15 @@ public class UserController {
         });
     }
 
+
+    /*查询所有用户信息*/
+    @GetMapping("/selectAll")
+    public Result<List<UserInfoBO>> selectAll(){
+        List<UserInfoBO> list = new ArrayList<>();
+        List<UserInfoDO> userInfoDOS = userService.selectAll();
+        for (UserInfoDO userInfoDO : userInfoDOS){
+            list.add(EntityConverter.convert(userInfoDO));
+        }
+        return RestResultUtil.buildSuccessResult(list,"查询成功");
+    }
 }
