@@ -13,6 +13,7 @@ import com.mengtu.util.common.ToString;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Data
@@ -35,8 +36,21 @@ public class Case extends BaseDo {
     @TableField(value = "case_name")
     private String caseName;
 
-    /*案例url*/
+    /*案例路径*/
     @TableField(value = "case_url")
     private String caseUrl;
 
+    /*案例url*/
+    @TableField(exist = false)
+    private String caseMp4;
+
+    /*案例封面*/
+    @TableField(exist = false)
+    private String casePic;
+
+    @TableField(exist = false)
+    private MultipartFile mp4;
+
+    @TableField(exist = false)
+    private MultipartFile pic;
 }

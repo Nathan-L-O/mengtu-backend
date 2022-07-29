@@ -24,4 +24,8 @@ public class Label extends BaseDo{
     @TableField(value = "label_name")
     private String labelName;
 
+    /*是否隐藏*/
+    @TableField(value = "ishidden")
+    private String ishidden;
+
 }

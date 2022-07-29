@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+@CrossOrigin
+@ResponseBody
 @RestController
-@RequestMapping("/label")
+@RequestMapping(value = "/label", produces = {"application/json;charset=UTF-8"})
 public class LabelController {
 
     @Resource

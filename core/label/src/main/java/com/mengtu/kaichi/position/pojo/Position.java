@@ -36,7 +36,7 @@ public class Position extends BaseDo {
     @TableField(value = "workplace")
     private String workplace;
 
-    /*工作类型,0兼职 1全职*/
+    /*工作类型,0全职 1兼职*/
     @TableField(value = "position_type")
     private Integer positionType;
 

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/JobCategory")
+@ResponseBody
+@RequestMapping(value = "/JobCategory", produces = {"application/json;charset=UTF-8"})
 public class JobCategoryController {
 
     @Resource

@@ -17,7 +17,7 @@ public class LabelServiceImpl implements LabelService {
 
     @Override
     public List<Label> selectAll() {
-        return labelMapper.selectList(null);
+        return labelMapper.selectList(new QueryWrapper<Label>().eq("ishidden","0"));
     }
 
     @Override
