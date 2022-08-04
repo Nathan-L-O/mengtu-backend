@@ -108,6 +108,8 @@ public interface UserService {
      */
     void avatarUpdate(CommonUserRequest request, File avatarFile);
 
+    void test(File avatarFile);
+
     /*后台查询所有用户信息*/
     List<UserInfoDO> selectAll();
 }

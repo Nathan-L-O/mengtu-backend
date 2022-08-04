@@ -77,8 +77,13 @@ public class UserController {
     @Value("${kaichi.user.avatar.max-size}")
     private int maxAvatarSize;
 
+    @PostMapping("/test")
+    public void test(@RequestParam(value = "avatar", required = false) MultipartFile file){
+        userService.test( FileUtil.multipartFileToFile(file));
+    }
+
     /**
-     * 登陆（获取 token）
+     * 登陆（获取 token
      *
      * @param request
      * @param httpServletRequest

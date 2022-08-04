@@ -170,6 +170,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void test(File avatarFile) {
+//        obsUtil.uploadFile(avatarFile, AVATAR_LOCATION, "1qaz2wsx");
+//        obsUtil.copy(obsUtil.fetchFile(AVATAR_LOCATION, "1qaz2wsx"),
+//                AVATAR_LOCATION + "plokm" + ".svg");
+        System.out.println(obsUtil.getSignatureDownloadUrl(AVATAR_LOCATION, "plokm", 120L));
+    }
+
+    @Override
     public List<UserInfoDO> selectAll() {
         return userMapper.selectList(null);
     }

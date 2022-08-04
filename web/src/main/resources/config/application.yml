@@ -8,13 +8,16 @@ spring:
     allow-bean-definition-overriding: true
   servlet:
     multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
+      max-file-size: 600MB
+      max-request-size: 600MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://124.71.161.213:3306/mt-backend?serverTimezone=GMT%2b8
-    username: mt-backend
-    password: XB3ZnWMhrySafxJz
+#    url: jdbc:mysql://124.71.161.213:3306/mt-backend?serverTimezone=GMT%2b8
+#    username: mt-backend
+#    password: XB3ZnWMhrySafxJz
+    url: jdbc:mysql://192.168.3.8:3306/mtbe-kaichi?serverTimezone=GMT%2b8
+    username: root
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5

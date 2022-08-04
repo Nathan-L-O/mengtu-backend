@@ -71,8 +71,8 @@ public class UserManagerImpl implements UserManager {
         if (userInfo != null) {
             userInfoRepoService.bindUserInfo(user.getUserId(), userInfo);
             try {
-                obsUtil.copy(obsUtil.fetchFile(AVATAR_LOCATION, "defaultUserAvatar"),
-                        AVATAR_LOCATION + HashUtil.sha256(user.getUserId()) + ".png");
+                obsUtil.copy(obsUtil.fetchFile(AVATAR_LOCATION, "1qaz2wsx"),
+                        AVATAR_LOCATION + HashUtil.sha256(user.getUserId()) + ".svg");
             } catch (Exception ignored) {
             }
 
