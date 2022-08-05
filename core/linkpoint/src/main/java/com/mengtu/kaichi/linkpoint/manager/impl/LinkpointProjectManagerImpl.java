@@ -11,6 +11,7 @@ import com.mengtu.kaichi.linkpoint.model.ProjectVersionBO;
 import com.mengtu.kaichi.linkpoint.request.ProjectManageRequest;
 import com.mengtu.util.enums.RestResultCode;
 import com.mengtu.util.exception.KaiChiException;
+import com.mengtu.util.storage.FileUtil;
 import com.mengtu.util.storage.ObsUtil;
 import com.mengtu.util.tools.AssertUtil;
 import com.mengtu.util.tools.CollectionUtil;
@@ -64,6 +65,8 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
     private static final String PROJECT_LOCATION = "project/linkpoint/";
 
     private static final String PROJECT_PREVIEW_LOCATION = "project/linkpoint/preview/";
+
+    private static final String PREVIEW_LOCATION = "preview/linkpoint/";
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -138,15 +141,15 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         AssertUtil.assertNotNull(projectBO, RestResultCode.PARTIAL_CONTENT, "初始化创建项目失败");
 
 
-        ObsObject obsObject, preview = null;
+        File obsObject, preview = null;
         try {
-            obsObject = obsUtil.fetchFile(PROJECT_LOCATION, projectVersionBO.getResourceUri());
+            obsObject = FileUtil.getFile(PROJECT_LOCATION, projectVersionBO.getResourceUri());
         } catch (Exception e) {
             throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "获取原始项目文件失败");
         }
         AssertUtil.assertNotNull(obsObject, RestResultCode.NOT_FOUND, "获取原始项目文件失败");
         try {
-            preview = obsUtil.fetchFile(PROJECT_PREVIEW_LOCATION, projectVersionBO.getResourceUri());
+            preview = FileUtil.getFile(PREVIEW_LOCATION, projectVersionBO.getResourceUri());
         } catch (Exception ignored) {
         }
 
@@ -160,19 +163,15 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         AssertUtil.assertNotNull(projectVersionBO, RestResultCode.NOT_FOUND, "项目版本信息创建失败");
 
         try {
-            String originalFileName = obsObject.getObjectKey();
-            obsUtil.copy(obsObject, PROJECT_LOCATION
-                    + projectVersionBO.getResourceUri()
-                    + originalFileName.substring(originalFileName.lastIndexOf(".")));
+            FileUtil.putFile(obsObject, PROJECT_LOCATION
+                    , projectVersionBO.getResourceUri());
         } catch (Exception e) {
             throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "复制原始项目文件失败");
         }
 
         if (preview != null) {
-            String originalFileName = preview.getObjectKey();
-            obsUtil.copy(preview, PROJECT_PREVIEW_LOCATION
-                    + projectVersionBO.getResourceUri()
-                    + originalFileName.substring(originalFileName.lastIndexOf(".")));
+            FileUtil.putFile(preview, PREVIEW_LOCATION
+                    , projectVersionBO.getResourceUri());
         }
 
         return projectBO;
@@ -197,8 +196,8 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         if (projectVersionBOList.size() >= MAX_VERSION) {
             for (int i = projectVersionBOList.size(); i >= MAX_VERSION; i--) {
                 try {
-                    obsUtil.deleteFile(PROJECT_LOCATION, projectVersionBOList.get(i - MAX_VERSION).getResourceUri());
-                    obsUtil.deleteFile(PROJECT_PREVIEW_LOCATION, projectVersionBOList.get(i - MAX_VERSION).getResourceUri());
+                    FileUtil.deleteFile(PROJECT_LOCATION, projectVersionBOList.get(i - MAX_VERSION).getResourceUri());
+                    FileUtil.deleteFile(PREVIEW_LOCATION, projectVersionBOList.get(i - MAX_VERSION).getResourceUri());
                 } catch (Exception e) {
                     LoggerUtil.warn(LOGGER, "OBS Delete Failed, location={0}, filename={1}", PROJECT_LOCATION, projectVersionBOList.get(i - 1).getResourceUri());
                 }
@@ -214,10 +213,10 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
 
 
         String originalFileName = file.getName();
-        obsUtil.uploadFile(file, PROJECT_LOCATION, projectVersionBO.getResourceUri() + originalFileName.substring(originalFileName.lastIndexOf(".")));
+        FileUtil.putFile(file, PROJECT_LOCATION, projectVersionBO.getResourceUri() + originalFileName.substring(originalFileName.lastIndexOf(".")));
         if (preview != null) {
             originalFileName = preview.getName();
-            obsUtil.uploadFile(preview, PROJECT_PREVIEW_LOCATION, projectVersionBO.getResourceUri() + originalFileName.substring(originalFileName.lastIndexOf(".")));
+            FileUtil.putFile(preview, PREVIEW_LOCATION, projectVersionBO.getResourceUri() + originalFileName.substring(originalFileName.lastIndexOf(".")));
         }
 
         return projectVersionBO;
@@ -248,9 +247,9 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         for (i = projectVersionBOList.size() - 1; i > version; i--) {
             try {
                 linkpointProjectVersionRepoService.deleteProjectVersion(projectVersionBOList.get(i).getProjectVersionId());
-                obsUtil.deleteFile(PROJECT_LOCATION, projectVersionBOList.get(i).getResourceUri());
+                FileUtil.deleteFile(PROJECT_LOCATION, projectVersionBOList.get(i).getResourceUri());
                 try {
-                    obsUtil.deleteFile(PROJECT_PREVIEW_LOCATION, projectVersionBOList.get(i).getResourceUri());
+                    FileUtil.deleteFile(PREVIEW_LOCATION, projectVersionBOList.get(i).getResourceUri());
                 } catch (Exception ignored) {
                 }
             } catch (Exception e) {
@@ -272,9 +271,9 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         for (ProjectVersionBO projectVersionBO : projectVersionBOList) {
             try {
                 linkpointProjectVersionRepoService.deleteProjectVersion(projectVersionBO.getProjectVersionId());
-                obsUtil.deleteFile(PROJECT_LOCATION, projectVersionBO.getResourceUri());
+                FileUtil.deleteFile(PROJECT_LOCATION, projectVersionBO.getResourceUri());
                 try {
-                    obsUtil.deleteFile(PROJECT_PREVIEW_LOCATION, projectVersionBO.getResourceUri());
+                    FileUtil.deleteFile(PREVIEW_LOCATION, projectVersionBO.getResourceUri());
                 } catch (Exception ignored) {
                 }
             } catch (Exception e) {

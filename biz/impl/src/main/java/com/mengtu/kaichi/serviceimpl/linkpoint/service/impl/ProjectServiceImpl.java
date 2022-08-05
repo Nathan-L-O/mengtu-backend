@@ -16,6 +16,7 @@ import com.mengtu.kaichi.user.user.service.UserBasicService;
 import com.mengtu.util.enums.RestResultCode;
 import com.mengtu.util.exception.KaiChiException;
 import com.mengtu.util.hash.HashUtil;
+import com.mengtu.util.storage.FileUtil;
 import com.mengtu.util.storage.ObsUtil;
 import com.mengtu.util.tools.AssertUtil;
 import com.mengtu.util.tools.CollectionUtil;
@@ -92,14 +93,12 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (!projectVersionBOList.isEmpty()) {
             ProjectVersionBO projectVersionBO = projectVersionBOList.get(projectVersionBOList.size() - 1);
-            projectBO.putExtInfo("resource_uri", obsUtil.getSignatureDownloadUrl(
-                    PROJECT_LOCATION, projectVersionBO.getResourceUri()));
+            projectBO.putExtInfo("resource_uri", projectVersionBO.getResourceUri());
             if (projectBO.getModifyDate().before(projectVersionBO.getVersionTimestamp())) {
                 projectBO.setModifyDate(projectVersionBO.getVersionTimestamp());
             }
             try {
-                projectBO.putExtInfo("previewUrl", obsUtil.getSignatureDownloadUrl(
-                        PROJECT_PREVIEW_LOCATION, projectVersionBO.getResourceUri()));
+                projectBO.putExtInfo("previewUrl", "http://192.168.3.8:8080/file?path=project/linkpoint/&key="+projectVersionBO.getProjectId());
             } catch (Exception ignored) {
             }
         }
@@ -116,6 +115,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         List<ProjectBO> projectBOList = linkpointProjectRepoService.queryAllProject(projectBO);
         for (ProjectBO tempProjectBO : projectBOList) {
+            //TODO 根据projectId获取项目最新的版本
             List<ProjectVersionBO> projectVersionBOList = linkpointProjectVersionRepoService.queryByProjectId(tempProjectBO.getProjectId());
             if (!projectVersionBOList.isEmpty()) {
                 ProjectVersionBO projectVersionBO = projectVersionBOList.get(projectVersionBOList.size() - 1);
@@ -123,8 +123,8 @@ public class ProjectServiceImpl implements ProjectService {
                     tempProjectBO.setModifyDate(projectVersionBO.getVersionTimestamp());
                 }
                 try {
-                    tempProjectBO.putExtInfo("previewUrl", obsUtil.getSignatureDownloadUrl(PROJECT_PREVIEW_LOCATION,
-                            HashUtil.sha256(projectVersionBO.getProjectVersionId()), 300L));
+                    tempProjectBO.putExtInfo("previewUrl", "http://192.168.3.8:8080/file?path=preview/linkpoint/&key=" + tempProjectBO.getProjectId());
+                    tempProjectBO.putExtInfo("preview_uri", tempProjectBO.getProjectId());
                 } catch (Exception ignored) {
                 }
             }
@@ -157,7 +157,7 @@ public class ProjectServiceImpl implements ProjectService {
             String initialUser = projectBO.getInitialId();
             UserInfoBO userInfoBO = userBasicService.getByUserId(initialUser).getUserInfo();
             projectBO.putExtInfo("initialUserName", userInfoBO.getNickname() != null ? userInfoBO.getNickname() : userInfoBO.getMobilePhone());
-            projectBO.putExtInfo("initialAvatarUrl", obsUtil.getSignatureDownloadUrl(AVATAR_LOCATION, HashUtil.sha256(userInfoBO.getUserId()), 120L));
+//            projectBO.putExtInfo("initialAvatarUrl", obsUtil.getSignatureDownloadUrl(AVATAR_LOCATION, HashUtil.sha256(userInfoBO.getUserId()), 120L));
         }
         return projectBOList;
     }

@@ -17,6 +17,7 @@ final public class LinkpointProjectVOConverter {
     private static final String AVATAR_INFO_KEY = "initialAvatarUrl";
 
     private static final String PREVIEW_KEY = "previewUrl";
+    private static final String PREVIEW_KEY_URI = "preview_uri";
 
     public static ProjectVO convert(ProjectBO projectBO) {
         if (projectBO == null) {
@@ -24,8 +25,11 @@ final public class LinkpointProjectVOConverter {
         }
         ProjectVO projectVO = new ProjectVO();
         projectVO.setProjectId(projectBO.getProjectId());
-        if (projectBO.fetchExtInfo(RESOURCE_URI) != null) {
-            projectVO.setSignatureUrl(projectBO.fetchExtInfo(RESOURCE_URI));
+//        if (projectBO.fetchExtInfo(RESOURCE_URI) != null) {
+//            projectVO.setSignatureUrl(projectBO.fetchExtInfo(RESOURCE_URI));
+//        }
+        if (projectBO.getProjectId() != null) {
+            projectVO.setSignatureUrl("http://192.168.3.8:8080/file?path=project/linkpoint/&key="+projectBO.getProjectId());
         }
         projectVO.setProjectDescription(projectBO.getProjectDescription());
         projectVO.setProjectName(projectBO.getProjectName());
@@ -39,10 +43,11 @@ final public class LinkpointProjectVOConverter {
             projectVO.putExtInfo(USERNAME_INFO_KEY, projectBO.fetchExtInfo(USERNAME_INFO_KEY));
         }
 
-        if (projectBO.fetchExtInfo(AVATAR_INFO_KEY) != null) {
-            projectVO.putExtInfo(AVATAR_INFO_KEY, projectBO.fetchExtInfo(AVATAR_INFO_KEY));
-        }
+//        if (projectBO.fetchExtInfo(AVATAR_INFO_KEY) != null) {
+//            projectVO.putExtInfo(AVATAR_INFO_KEY, projectBO.fetchExtInfo(AVATAR_INFO_KEY));
+//        }
         projectVO.putExtInfo(PREVIEW_KEY, projectBO.fetchExtInfo(PREVIEW_KEY));
+        projectVO.putExtInfo(PREVIEW_KEY_URI, projectBO.fetchExtInfo(PREVIEW_KEY_URI));
         return projectVO;
     }
 

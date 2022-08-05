@@ -30,7 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -74,7 +76,7 @@ public class ProjectVersionController {
             public Result<List<ProjectVersionVO>> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectId(request.getProjectId())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(CollectionUtil.toStream(
                                 projectVersionService.attachOperatorName(projectVersionService.queryVersionList(builder.build())))
@@ -111,7 +113,7 @@ public class ProjectVersionController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectVersionId(request.getProjectVersionId())
                         .withProjectName(request.getProjectName())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectVersionService.duplicateVersion(builder.build())), "克隆历史版本成功");
@@ -132,19 +134,19 @@ public class ProjectVersionController {
     @Limit(threshold = 30)
     public Result<ProjectVersionVO> uploadProject(ProjectRestRequest request, HttpServletRequest httpServletRequest,
                                                   @RequestParam(value = "data", required = false) MultipartFile file,
-                                                  @RequestParam(value = "md5sum", required = false) String md5Sum,
+//                                                  @RequestParam(value = "md5sum", required = false) String md5Sum,
                                                   @RequestParam(value = "preview", required = false) MultipartFile preview) {
         return RestOperateTemplate.operate(LOGGER, "上传项目", httpServletRequest, new RestOperateCallBack<ProjectVersionVO>() {
             @Override
             public void before() {
                 AssertUtil.assertNotNull(request, RestResultCode.ILLEGAL_PARAMETERS, "请求体不能为空");
-                AssertUtil.assertStringNotBlank(request.getUserId(), RestResultCode.ILLEGAL_PARAMETERS, "用户不能为空");
+                AssertUtil.assertStringNotBlank("202204241143307751750001202224", RestResultCode.ILLEGAL_PARAMETERS, "用户不能为空");
                 AssertUtil.assertStringNotBlank(request.getProjectId(), RestResultCode.ILLEGAL_PARAMETERS, "项目 ID 不能为空");
-                AssertUtil.assertStringNotBlank(md5Sum, RestResultCode.ILLEGAL_PARAMETERS, "数据摘要不能为空");
+//                AssertUtil.assertStringNotBlank(md5Sum, RestResultCode.ILLEGAL_PARAMETERS, "数据摘要不能为空");
                 AssertUtil.assertNotNull(file, RestResultCode.ILLEGAL_PARAMETERS, "上传数据不能为空");
                 AssertUtil.assertTrue(file.getSize() != 0, RestResultCode.ILLEGAL_PARAMETERS, "数据文件非法(空文件)");
                 AssertUtil.assertTrue(file.getSize() <= 209715200L, RestResultCode.FORBIDDEN, "数据文件大小超限");
-                AssertUtil.assertTrue(md5Sum.equalsIgnoreCase(HashUtil.md5(file)), RestResultCode.FORBIDDEN, "数据完整性校验失败");
+//                AssertUtil.assertTrue(md5Sum.equalsIgnoreCase(HashUtil.md5(file)), RestResultCode.FORBIDDEN, "数据完整性校验失败");
                 if (preview != null) {
                     AssertUtil.assertTrue(preview.getSize() != 0, RestResultCode.ILLEGAL_PARAMETERS, "缩略图文件非法(空文件)");
                     AssertUtil.assertTrue(preview.getSize() <= 10485760L, RestResultCode.FORBIDDEN, "缩略图文件大小超限");
@@ -154,7 +156,7 @@ public class ProjectVersionController {
             @Override
             public Result<ProjectVersionVO> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
-                        .withUserId(request.getUserId())
+                        .withUserId("202204241143307751750001202224")
                         .withProjectId(request.getProjectId());
 
                 return RestResultUtil.buildSuccessResult(
@@ -187,7 +189,7 @@ public class ProjectVersionController {
             public Result<ProjectVersionVO> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectVersionId(request.getProjectVersionId())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVersionVOConverter.convert(projectVersionService.versionCheckout(builder.build())), "版本检出成功");

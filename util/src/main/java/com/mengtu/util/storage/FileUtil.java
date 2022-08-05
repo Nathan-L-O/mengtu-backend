@@ -21,7 +21,7 @@ public class FileUtil {
     /**
      * 本地根路径
      */
-    private static final String ROOT_LOCATION = "/Users/tony/Downloads/";
+    private static final String ROOT_LOCATION = "E:\\backend\\";
 
     /**
      * MultipartFile -> File

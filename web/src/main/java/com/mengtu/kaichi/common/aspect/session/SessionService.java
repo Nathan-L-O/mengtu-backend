@@ -61,7 +61,7 @@ public class SessionService extends RestAop {
         if (StringUtils.isBlank(token)) {
             return RestResultUtil.buildResult(RestResultCode.UNAUTHORIZED, "登陆凭证缺失");
         }
-
+        System.out.println(token);
         UserBO userBO = userBasicService.checkLogin(token, IPUtil.getIp(httpServletRequest));
         if (userBO == null) {
             return RestResultUtil.buildResult(RestResultCode.UNAUTHORIZED, "用户未登录");

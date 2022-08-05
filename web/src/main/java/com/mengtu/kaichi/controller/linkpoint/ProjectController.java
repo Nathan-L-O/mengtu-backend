@@ -79,7 +79,7 @@ public class ProjectController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
-                        .withUserId(request.getUserId())
+                        .withUserId("202204241143307751750001202224")
                         .withDomainId(request.getDomainId());
 
                 return RestResultUtil.buildSuccessResult(
@@ -114,7 +114,7 @@ public class ProjectController {
                         .withProjectId(request.getProjectId())
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectService.update(builder.build())), "更新项目信息成功");
@@ -145,7 +145,7 @@ public class ProjectController {
             public Result<ProjectVO> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectId(request.getProjectId())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectService.query(builder.build())), "获取项目实体信息成功");
@@ -171,7 +171,7 @@ public class ProjectController {
             @Override
             public void before() {
                 AssertUtil.assertNotNull(request, RestResultCode.ILLEGAL_PARAMETERS, "请求体不能为空");
-                AssertUtil.assertStringNotBlank(request.getDomainId(), RestResultCode.ILLEGAL_PARAMETERS, "域 ID 不能为空");
+//                AssertUtil.assertStringNotBlank(request.getDomainId(), RestResultCode.ILLEGAL_PARAMETERS, "域 ID 不能为空");
                 AssertUtil.assertStringNotBlank(archiveStatus, RestResultCode.ILLEGAL_PARAMETERS, "归档状态不能为空");
                 AssertUtil.assertTrue(Objects.equals(archiveStatus, "0") || Objects.equals(archiveStatus, "1"), RestResultCode.ILLEGAL_PARAMETERS);
             }
@@ -179,8 +179,8 @@ public class ProjectController {
             @Override
             public Result<List<ProjectVO>> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
-                        .withDomainId(request.getDomainId())
-                        .withUserId(request.getUserId());
+                        .withDomainId("202204241143307751750001202224")
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(CollectionUtil.toStream(
                                 projectService.attachCreatorInfo(projectService.queryAll(builder.build())))
@@ -216,7 +216,7 @@ public class ProjectController {
             public Result<String> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectId(request.getProjectId())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
                 projectService.archive(builder.build());
 
                 return RestResultUtil.buildSuccessResult("归档状态变更成功");
@@ -247,7 +247,7 @@ public class ProjectController {
             public Result<ProjectVO> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectId(request.getProjectId())
-                        .withUserId(request.getUserId());
+                        .withUserId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectVersionService.duplicateVersion(builder.build())), "复制项目成功");
