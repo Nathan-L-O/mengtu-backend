@@ -93,8 +93,10 @@ public class VaultServiceImpl implements VaultService {
         projectVaultBO = linkpointVaultService.query(projectVaultBO);
 
         try {
-            projectVaultBO.putExtInfo("dataUrl", obsUtil.getSignatureDownloadUrl(VAULT_LOCATION_PREVIEW,
+            projectVaultBO.putExtInfo("dataUrl", obsUtil.getSignatureDownloadUrl(VAULT_LOCATION_MODEL,
                     HashUtil.sha256(projectVaultBO.getModelId()), 120L));
+//            projectVaultBO.putExtInfo("dataUrl", obsUtil.getSignatureDownloadUrl(VAULT_LOCATION_PREVIEW,
+//                    HashUtil.sha256(projectVaultBO.getModelId()), 120L));
         } catch (Exception ignored) {
         }
 
