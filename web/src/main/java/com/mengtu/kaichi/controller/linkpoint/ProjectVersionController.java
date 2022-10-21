@@ -145,11 +145,11 @@ public class ProjectVersionController {
 //                AssertUtil.assertStringNotBlank(md5Sum, RestResultCode.ILLEGAL_PARAMETERS, "数据摘要不能为空");
                 AssertUtil.assertNotNull(file, RestResultCode.ILLEGAL_PARAMETERS, "上传数据不能为空");
                 AssertUtil.assertTrue(file.getSize() != 0, RestResultCode.ILLEGAL_PARAMETERS, "数据文件非法(空文件)");
-                AssertUtil.assertTrue(file.getSize() <= 209715200L, RestResultCode.FORBIDDEN, "数据文件大小超限");
+//                AssertUtil.assertTrue(file.getSize() <= 209715200L, RestResultCode.FORBIDDEN, "数据文件大小超限");
 //                AssertUtil.assertTrue(md5Sum.equalsIgnoreCase(HashUtil.md5(file)), RestResultCode.FORBIDDEN, "数据完整性校验失败");
                 if (preview != null) {
                     AssertUtil.assertTrue(preview.getSize() != 0, RestResultCode.ILLEGAL_PARAMETERS, "缩略图文件非法(空文件)");
-                    AssertUtil.assertTrue(preview.getSize() <= 10485760L, RestResultCode.FORBIDDEN, "缩略图文件大小超限");
+//                    AssertUtil.assertTrue(preview.getSize() <= 10485760L, RestResultCode.FORBIDDEN, "缩略图文件大小超限");
                 }
             }
 

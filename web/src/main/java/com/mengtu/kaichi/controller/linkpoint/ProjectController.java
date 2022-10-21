@@ -70,7 +70,7 @@ public class ProjectController {
                 AssertUtil.assertNotNull(request, RestResultCode.ILLEGAL_PARAMETERS, "请求体不能为空");
                 AssertUtil.assertStringNotBlank(request.getProjectName(), RestResultCode.ILLEGAL_PARAMETERS, "项目名称不能为空");
                 AssertUtil.assertStringNotBlank(request.getProjectDescription(), RestResultCode.ILLEGAL_PARAMETERS, "项目描述不能为空");
-                AssertUtil.assertStringNotBlank(request.getDomainId(), RestResultCode.ILLEGAL_PARAMETERS, "域 ID 不能为空");
+//                AssertUtil.assertStringNotBlank(request.getDomainId(), RestResultCode.ILLEGAL_PARAMETERS, "域 ID 不能为空");
                 AssertUtil.assertTrue(!SensitiveFilterUtil.contains(request.toAuditString()), RestResultCode.AUDIT_HIT);
             }
 
@@ -80,7 +80,7 @@ public class ProjectController {
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
                         .withUserId("202204241143307751750001202224")
-                        .withDomainId(request.getDomainId());
+                        .withDomainId("202204241143307751750001202224");
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectService.create(builder.build())), "创建项目成功");
