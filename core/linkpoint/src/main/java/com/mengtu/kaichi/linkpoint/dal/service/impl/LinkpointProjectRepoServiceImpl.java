@@ -101,6 +101,16 @@ public class LinkpointProjectRepoServiceImpl implements LinkpointProjectRepoServ
     public List<ProjectBO> queryAllProject(ProjectBO projectBO) {
         return CollectionUtil.toStream(linkpointProjectRepo.findAllByDomainId(projectBO.getDomainId()))
                 .filter(Objects::nonNull)
+                .filter(o -> o.getFolderId() == null)
+                .sorted(Comparator.comparingLong(o -> o.getGmtCreate().getTime()))
+                .map(EntityConverter::convert)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProjectBO> queryByFolderId(String folderId) {
+        return CollectionUtil.toStream(linkpointProjectRepo.findAllByFolderId(folderId))
+                .filter(Objects::nonNull)
                 .sorted(Comparator.comparingLong(o -> o.getGmtCreate().getTime()))
                 .map(EntityConverter::convert)
                 .collect(Collectors.toList());

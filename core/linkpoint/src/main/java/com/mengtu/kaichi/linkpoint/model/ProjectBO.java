@@ -62,6 +62,22 @@ public class ProjectBO extends ToString {
     private Date modifyDate;
 
     /**
+     * 所属文件夹ID
+     */
+    private String folderId;
+
+    /**
+     * 为父项目
+     */
+    private Boolean isPrincipalProject;
+
+    /**
+     * 判断是否为文件夹
+     */
+    private Boolean isFolder;
+
+
+    /**
      * 拓展信息
      */
     private Map<String, String> extInfo;
@@ -171,6 +187,30 @@ public class ProjectBO extends ToString {
 
     public void setExtInfo(Map<String, String> extInfo) {
         this.extInfo = extInfo;
+    }
+
+    public String getFolderId() {
+        return this.folderId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
+    }
+
+    public Boolean getPrincipalProject() {
+        return isPrincipalProject;
+    }
+
+    public void setPrincipalProject(Boolean principalProject) {
+        isPrincipalProject = principalProject;
+    }
+
+    public Boolean getFolder() {
+        return isFolder;
+    }
+
+    public void setFolder(Boolean folder) {
+        isFolder = folder;
     }
 
     @Override

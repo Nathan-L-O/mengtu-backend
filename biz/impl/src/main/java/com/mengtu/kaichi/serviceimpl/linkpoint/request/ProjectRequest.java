@@ -48,6 +48,11 @@ public class ProjectRequest extends ProjectManageRequest implements VerifyReques
      */
     private String projectVersionId;
 
+    /**
+     * 项目版本 ID
+     */
+    private String folderId;
+
     @Override
     public String getRequestId() {
         return requestId;
@@ -119,5 +124,13 @@ public class ProjectRequest extends ProjectManageRequest implements VerifyReques
     @Override
     public String getVerifyUserId() {
         return userId;
+    }
+
+    public String getFolderId() {
+        return folderId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
     }
 }

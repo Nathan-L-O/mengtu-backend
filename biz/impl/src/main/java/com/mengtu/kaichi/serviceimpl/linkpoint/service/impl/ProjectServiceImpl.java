@@ -107,13 +107,17 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectBO> queryAll(ProjectRequest request) {
+    public List<ProjectBO> queryAll(ProjectRequest request,String folderId) {
         verifyPerm(request);
 
         ProjectBO projectBO = new ProjectBO();
         projectBO.setDomainId(request.getDomainId());
-
-        List<ProjectBO> projectBOList = linkpointProjectRepoService.queryAllProject(projectBO);
+        List<ProjectBO> projectBOList;
+        if (folderId == null){
+            projectBOList = linkpointProjectRepoService.queryAllProject(projectBO);
+        }else {
+            projectBOList = linkpointProjectRepoService.queryByFolderId(folderId);
+        }
         for (ProjectBO tempProjectBO : projectBOList) {
             //TODO 根据projectId获取项目最新的版本
             List<ProjectVersionBO> projectVersionBOList = linkpointProjectVersionRepoService.queryByProjectId(tempProjectBO.getProjectId());

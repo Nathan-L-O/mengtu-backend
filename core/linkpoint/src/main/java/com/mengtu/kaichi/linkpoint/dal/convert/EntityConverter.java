@@ -39,6 +39,8 @@ final public class EntityConverter {
         projectBO.setDomainId(linkpointProjectDO.getDomainId());
         projectBO.setCreateDate(linkpointProjectDO.getGmtCreate());
         projectBO.setModifyDate(linkpointProjectDO.getGmtModified());
+        projectBO.setPrincipalProject(linkpointProjectDO.getPrincipalProject());
+        projectBO.setFolderId(linkpointProjectDO.getFolderId());
         projectBO.setExtInfo(JSON.parseObject(linkpointProjectDO.getExtInfo(), Map.class));
         return projectBO;
     }
@@ -63,6 +65,8 @@ final public class EntityConverter {
         linkpointProjectDO.setInitialId(projectBO.getInitialId());
         linkpointProjectDO.setDomainId(projectBO.getDomainId());
         linkpointProjectDO.setExtInfo(JSON.toJSONString((projectBO.getExtInfo())));
+        linkpointProjectDO.setFolderId(projectBO.getFolderId());
+        linkpointProjectDO.setPrincipalProject(projectBO.getPrincipalProject());
         return linkpointProjectDO;
     }
 

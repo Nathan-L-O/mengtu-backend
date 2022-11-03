@@ -23,6 +23,10 @@ public interface LinkpointProjectRepo extends JpaRepository<LinkpointProjectDO, 
      */
     LinkpointProjectDO findByProjectId(String projectId);
 
+    List<LinkpointProjectDO> findAllByFolderId (String folderId);
+
+    List<LinkpointProjectDO> findAllByFolderIdAndIsPrincipalProject (String folderId,Boolean isPrincipalProject);
+
     /**
      * 查询项目名称与域 ID
      *

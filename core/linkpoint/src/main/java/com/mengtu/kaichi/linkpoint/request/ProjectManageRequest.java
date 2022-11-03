@@ -50,6 +50,8 @@ public class ProjectManageRequest extends BaseRequest {
      */
     private String projectVersionId;
 
+    private String folderId;
+
 
     public String getProjectId() {
         return projectId;
@@ -115,4 +117,11 @@ public class ProjectManageRequest extends BaseRequest {
         this.projectVersionId = projectVersionId;
     }
 
+    public String getFolderId() {
+        return folderId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
+    }
 }

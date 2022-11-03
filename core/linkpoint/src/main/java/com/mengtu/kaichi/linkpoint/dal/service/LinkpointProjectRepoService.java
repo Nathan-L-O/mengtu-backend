@@ -44,4 +44,7 @@ public interface LinkpointProjectRepoService {
      */
     List<ProjectBO> queryAllProject(ProjectBO projectBO);
 
+
+    List<ProjectBO> queryByFolderId(String queryByFolderId);
+
 }

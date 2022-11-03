@@ -6,11 +6,15 @@ import com.mengtu.kaichi.common.log.LoggerName;
 import com.mengtu.kaichi.common.template.RestOperateCallBack;
 import com.mengtu.kaichi.common.template.RestOperateTemplate;
 import com.mengtu.kaichi.converter.linkpoint.LinkpointProjectVOConverter;
+import com.mengtu.kaichi.linkpoint.model.ProjectBO;
 import com.mengtu.kaichi.model.linkpoint.request.ProjectRestRequest;
 import com.mengtu.kaichi.model.linkpoint.vo.ProjectVO;
+import com.mengtu.kaichi.position.pojo.LinkPointFolder;
 import com.mengtu.kaichi.serviceimpl.linkpoint.builder.ProjectRequestBuilder;
 import com.mengtu.kaichi.serviceimpl.linkpoint.service.ProjectService;
 import com.mengtu.kaichi.serviceimpl.linkpoint.service.ProjectVersionService;
+import com.mengtu.kaichi.serviceimpl.position.service.JobCategoryService;
+import com.mengtu.kaichi.serviceimpl.position.service.LinkPointFolderService;
 import com.mengtu.kaichi.util.RestResultUtil;
 import com.mengtu.util.audit.SensitiveFilterUtil;
 import com.mengtu.util.common.Result;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +56,9 @@ public class ProjectController {
 
     @Resource
     private ProjectVersionService projectVersionService;
+
+    @Resource
+    private LinkPointFolderService linkPointFolderService;
 
     /**
      * 创建 LinkPoint 项目
@@ -79,6 +87,7 @@ public class ProjectController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
+                        .withFolderId(request.getFolderId())
                         .withUserId("202204241143307751750001202224")
                         .withDomainId("202204241143307751750001202224");
 
@@ -181,9 +190,23 @@ public class ProjectController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withDomainId("202204241143307751750001202224")
                         .withUserId("202204241143307751750001202224");
-
+                List<ProjectBO> list = projectService.attachCreatorInfo(projectService.queryAll(builder.build(),request.getFolderId()));
+                if (request.getFolderId() == null){
+                    List<LinkPointFolder> linkPointFolders = linkPointFolderService.queryAll();
+                    for (LinkPointFolder o:linkPointFolders) {
+                        ProjectBO projectBO = new ProjectBO();
+                        projectBO.setFolder(true);
+                        projectBO.setProjectId(o.getId());
+                        projectBO.setFolderId(o.getId());
+                        projectBO.setProjectName(o.getFolderName());
+                        projectBO.setCreateDate(o.getCreateTime());
+                        projectBO.setModifyDate(o.getUpdateTime());
+                        projectBO.setArchiveStatus(0);
+                        list.add(projectBO);
+                    }
+                }
                 return RestResultUtil.buildSuccessResult(CollectionUtil.toStream(
-                                projectService.attachCreatorInfo(projectService.queryAll(builder.build())))
+                                list)
                         .filter(Objects::nonNull)
                         .filter(temp -> (temp.getArchiveStatus().toString().equals(archiveStatus)))
                         .sorted(Comparator.comparingLong(o -> sortFlag == null ? o.getCreateDate().getTime() : o.getModifyDate().getTime()))

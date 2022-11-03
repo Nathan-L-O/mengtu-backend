@@ -18,6 +18,9 @@ spring:
     url: jdbc:mysql://192.168.3.8:3306/mtbe-kaichi?serverTimezone=GMT%2b8
     username: root
     password: 123456
+#    url: jdbc:mysql://localhost:3306/mtbe-kaichi?serverTimezone=GMT%2b8
+#    username: root
+#    password: 1qaz2wsx
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5

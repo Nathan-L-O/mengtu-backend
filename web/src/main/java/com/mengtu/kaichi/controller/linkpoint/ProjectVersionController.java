@@ -12,6 +12,7 @@ import com.mengtu.kaichi.model.linkpoint.vo.ProjectVO;
 import com.mengtu.kaichi.model.linkpoint.vo.ProjectVersionVO;
 import com.mengtu.kaichi.serviceimpl.linkpoint.builder.ProjectRequestBuilder;
 import com.mengtu.kaichi.serviceimpl.linkpoint.service.ProjectVersionService;
+import com.mengtu.kaichi.serviceimpl.position.service.LinkPointFolderService;
 import com.mengtu.kaichi.util.RestResultUtil;
 import com.mengtu.util.audit.SensitiveFilterUtil;
 import com.mengtu.util.common.Result;
@@ -52,7 +53,8 @@ public class ProjectVersionController {
     private final Logger LOGGER = LoggerFactory.getLogger(ProjectVersionController.class);
     @Resource
     private ProjectVersionService projectVersionService;
-
+    @Resource
+    private LinkPointFolderService linkPointFolderService;
     /**
      * 获取 LinkPoint 项目版本列表
      *
@@ -134,7 +136,6 @@ public class ProjectVersionController {
     @Limit(threshold = 30)
     public Result<ProjectVersionVO> uploadProject(ProjectRestRequest request, HttpServletRequest httpServletRequest,
                                                   @RequestParam(value = "data", required = false) MultipartFile file,
-//                                                  @RequestParam(value = "md5sum", required = false) String md5Sum,
                                                   @RequestParam(value = "preview", required = false) MultipartFile preview) {
         return RestOperateTemplate.operate(LOGGER, "上传项目", httpServletRequest, new RestOperateCallBack<ProjectVersionVO>() {
             @Override
@@ -158,7 +159,9 @@ public class ProjectVersionController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withUserId("202204241143307751750001202224")
                         .withProjectId(request.getProjectId());
-
+                if (request.getFolderId()!=null){
+                    linkPointFolderService.updateByFolderId(request.getFolderId());
+                }
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVersionVOConverter.convert(projectVersionService.uploadData(builder.build(),
                                 FileUtil.multipartFileToFile(file), preview == null ? null : FileUtil.multipartFileToFile(preview))), "保存成功");

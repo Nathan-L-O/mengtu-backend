@@ -48,6 +48,8 @@ final public class ProjectRequestBuilder {
      */
     private String projectVersionId;
 
+    private String folderId;
+
 
     /**
      * 拓展信息
@@ -68,6 +70,7 @@ final public class ProjectRequestBuilder {
         request.setDomainId(domainId);
         request.setUserId(userId);
         request.setExtInfo(extInfo);
+        request.setFolderId(folderId);
         return request;
     }
 
@@ -91,6 +94,10 @@ final public class ProjectRequestBuilder {
 
     public ProjectRequestBuilder withProjectName(String projectName) {
         this.projectName = projectName;
+        return this;
+    }
+    public ProjectRequestBuilder withFolderId(String folderId) {
+        this.folderId = folderId;
         return this;
     }
 

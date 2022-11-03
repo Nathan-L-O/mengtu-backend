@@ -37,6 +37,11 @@ public class ProjectRestRequest extends BaseRestRequest {
      */
     private String projectVersionId;
 
+    /**
+     * 项目所在文件夹
+     */
+    private String folderId;
+
 
     public String getDomainId() {
         return domainId;
@@ -80,5 +85,13 @@ public class ProjectRestRequest extends BaseRestRequest {
 
     public String toAuditString() {
         return projectName + projectDescription;
+    }
+
+    public String getFolderId() {
+        return folderId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
     }
 }

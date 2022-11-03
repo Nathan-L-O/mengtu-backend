@@ -66,18 +66,18 @@ public class RequestLimitService extends RestAop {
         String browserSessionKey = HashUtil.md5(httpServletRequest.getSession().getId() + httpServletRequest.getServletPath());
         String userSessionKey = HashUtil.md5(request.getUserId() + httpServletRequest.getServletPath());
 
-        if (POOL.containsKey(browserSessionKey)) {
-            if (POOL.get(browserSessionKey) + limitInstance.threshold() > current) {
-                return RestResultUtil.buildResult(RestResultCode.FORBIDDEN, String.format("请求过于频繁，请 %d 秒后再试",
-                        POOL.get(browserSessionKey) + (long) limitInstance.threshold() - current));
-            }
-        }
-        if (POOL.containsKey(userSessionKey)) {
-            if (POOL.get(userSessionKey) + limitInstance.threshold() > current) {
-                return RestResultUtil.buildResult(RestResultCode.FORBIDDEN, String.format("请求过于频繁，请 %d 秒后再试",
-                        POOL.get(userSessionKey) + (long) limitInstance.threshold() - current));
-            }
-        }
+//        if (POOL.containsKey(browserSessionKey)) {
+//            if (POOL.get(browserSessionKey) + limitInstance.threshold() > current) {
+//                return RestResultUtil.buildResult(RestResultCode.FORBIDDEN, String.format("请求过于频繁，请 %d 秒后再试",
+//                        POOL.get(browserSessionKey) + (long) limitInstance.threshold() - current));
+//            }
+//        }
+//        if (POOL.containsKey(userSessionKey)) {
+//            if (POOL.get(userSessionKey) + limitInstance.threshold() > current) {
+//                return RestResultUtil.buildResult(RestResultCode.FORBIDDEN, String.format("请求过于频繁，请 %d 秒后再试",
+//                        POOL.get(userSessionKey) + (long) limitInstance.threshold() - current));
+//            }
+//        }
         POOL.put(browserSessionKey, System.currentTimeMillis() / MILLI_TO_SECOND);
         POOL.put(userSessionKey, System.currentTimeMillis() / MILLI_TO_SECOND);
         return proceedingJoinPoint.proceed();

@@ -64,6 +64,18 @@ public class LinkpointProjectDO extends BaseDO {
     private Integer archiveStatus;
 
     /**
+     * 所属文件夹Id
+     */
+    @Column(name = "folder_id")
+    private String folderId;
+
+    /**
+     * 为父项目
+     */
+    @Column(name = "is_principal_project")
+    private Boolean isPrincipalProject;
+
+    /**
      * 拓展信息
      */
     @Column(length = 2000)
@@ -131,6 +143,22 @@ public class LinkpointProjectDO extends BaseDO {
 
     public void setExtInfo(String extInfo) {
         this.extInfo = extInfo;
+    }
+
+    public String getFolderId() {
+        return folderId;
+    }
+
+    public void setFolderId(String folderId) {
+        this.folderId = folderId;
+    }
+
+    public Boolean getPrincipalProject() {
+        return isPrincipalProject;
+    }
+
+    public void setPrincipalProject(Boolean principalProject) {
+        isPrincipalProject = principalProject;
     }
 
     @Override

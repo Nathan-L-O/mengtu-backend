@@ -42,7 +42,7 @@ public interface ProjectService {
      * @param request
      * @return
      */
-    List<ProjectBO> queryAll(ProjectRequest request);
+    List<ProjectBO> queryAll(ProjectRequest request,String folderId);
 
     /**
      * 添加创建人信息
