@@ -81,14 +81,15 @@ public class SensitiveFilterUtil {
      * @return
      */
     public static boolean contains(String txt) {
-        boolean flag = false;
-        for (int i = 0; i < txt.length(); i++) {
-            int matchFlag = checkSensitiveWord(txt, i);
-            if (matchFlag > 0) {
-                flag = true;
-            }
-        }
-        return flag;
+//        boolean flag = false;
+//        for (int i = 0; i < txt.length(); i++) {
+//            int matchFlag = checkSensitiveWord(txt, i);
+//            if (matchFlag > 0) {
+//                flag = true;
+//            }
+//        }
+//        return flag;
+        return false;
     }
 
     /**

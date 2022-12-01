@@ -87,10 +87,11 @@ public class ProjectController {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
-                        .withFolderId(request.getFolderId())
+                        .withFolderId(request.getFolderId().length()>0?request.getFolderId() : null)
                         .withUserId("202204241143307751750001202224")
                         .withDomainId("202204241143307751750001202224");
-
+                if (request.getFolderId().length()>0)
+                    linkPointFolderService.updateByFolderId(request.getFolderId());
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectService.create(builder.build())), "创建项目成功");
             }
