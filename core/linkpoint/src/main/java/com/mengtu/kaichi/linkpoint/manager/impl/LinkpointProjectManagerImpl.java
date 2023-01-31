@@ -281,13 +281,13 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
                 } catch (Exception ignored) {
                 }
             } catch (Exception e) {
-                throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "版本删除异常");
+//                throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "版本删除异常");
             }
         }
         try {
             linkpointProjectRepo.deleteByProjectId(request.getProjectId());
         } catch (Exception e) {
-            throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "项目删除异常");
+//            throw new KaiChiException(RestResultCode.PARTIAL_CONTENT, "项目删除异常");
         }
     }
 }

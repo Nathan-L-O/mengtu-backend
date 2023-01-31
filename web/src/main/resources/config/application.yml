@@ -17,7 +17,7 @@ spring:
 #    password: XB3ZnWMhrySafxJz
     url: jdbc:mysql://192.168.3.8:3306/mtbe-kaichi?serverTimezone=GMT%2b8
     username: root
-    password: 123456
+    password: db_mt_2023
 #    url: jdbc:mysql://localhost:3306/mtbe-kaichi?serverTimezone=GMT%2b8
 #    username: root
 #    password: 1qaz2wsx

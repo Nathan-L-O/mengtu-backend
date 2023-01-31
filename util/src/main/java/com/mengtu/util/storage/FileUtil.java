@@ -13,7 +13,7 @@ import java.nio.file.Files;
 /**
  * 文件工具
  *
- * @author 过昊天
+ * @author
  * @version 1.1 @ 2022/5/16 11:23
  */
 public class FileUtil {
@@ -21,7 +21,7 @@ public class FileUtil {
     /**
      * 本地根路径
      */
-    private static final String ROOT_LOCATION = "E:\\backend\\";
+    private static final String ROOT_LOCATION = "/mnt/Data-8T/LinkPoint_Data/backend/";
 
     /**
      * MultipartFile -> File
