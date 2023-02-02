@@ -1,6 +1,8 @@
 package com.mengtu.kaichi.linkpoint.model;
 
 import com.mengtu.util.common.ToString;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import java.util.Map;
  * @author 过昊天
  * @version 1.0 @ 2022/5/10 10:43
  */
+@Data
 public class ProjectVersionBO extends ToString {
 
     /**
@@ -45,6 +48,10 @@ public class ProjectVersionBO extends ToString {
      * 拓展信息
      */
     private Map<String, String> extInfo;
+    /**
+     * 模型过期时间
+     */
+    private String date;
 
     /**
      * 放入拓展信息

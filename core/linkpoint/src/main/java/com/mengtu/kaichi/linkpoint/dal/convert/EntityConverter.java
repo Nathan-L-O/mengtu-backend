@@ -87,6 +87,7 @@ final public class EntityConverter {
         projectVersionBO.setDomainId(linkpointProjectVersionDO.getDomainId());
         projectVersionBO.setResourceUri(linkpointProjectVersionDO.getResourceUri());
         projectVersionBO.setVersionTimestamp(linkpointProjectVersionDO.getGmtModified());
+        projectVersionBO.setDate(linkpointProjectVersionDO.getDate());
         projectVersionBO.setExtInfo(JSON.parseObject(linkpointProjectVersionDO.getExtInfo(), Map.class));
         return projectVersionBO;
     }
@@ -108,6 +109,7 @@ final public class EntityConverter {
         linkpointProjectVersionDO.setDomainId(projectVersionBO.getDomainId());
         linkpointProjectVersionDO.setResourceUri(projectVersionBO.getResourceUri());
         linkpointProjectVersionDO.setExtInfo(JSON.toJSONString((projectVersionBO.getExtInfo())));
+        linkpointProjectVersionDO.setDate(projectVersionBO.getDate());
         return linkpointProjectVersionDO;
     }
 

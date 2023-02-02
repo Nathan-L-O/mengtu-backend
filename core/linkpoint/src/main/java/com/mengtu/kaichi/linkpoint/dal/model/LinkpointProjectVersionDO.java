@@ -1,5 +1,6 @@
 package com.mengtu.kaichi.linkpoint.dal.model;
 
+import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
  * @author 过昊天
  * @version 1.0 @ 2022/4/25 14:31
  */
+@Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "linkpoint_project_version",
@@ -45,6 +47,12 @@ public class LinkpointProjectVersionDO extends BaseDO {
      */
     @Column(name = "resource_uri")
     private String resourceUri;
+
+    /**
+     * 模型过期时间
+     */
+    @Column(name = "date")
+    private String date;
 
     /**
      * 拓展信息

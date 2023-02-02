@@ -211,6 +211,7 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         projectVersionBO.setProjectId(projectBO.getProjectId());
         projectVersionBO.setDomainId(projectBO.getDomainId());
         projectVersionBO.putExtInfo("operator_id", request.getInitialId());
+        projectVersionBO.setDate(request.getDate());
 
         projectVersionBO = linkpointProjectVersionRepoService.createProjectVersion(projectVersionBO);
         AssertUtil.assertNotNull(projectVersionBO, "项目版本创建失败");

@@ -1,11 +1,14 @@
 package com.mengtu.kaichi.linkpoint.request;
 
+import lombok.Data;
+
 /**
  * 项目管理请求
  *
  * @author 过昊天
  * @version 1.0 @ 2022/5/10 13:41
  */
+@Data
 public class ProjectManageRequest extends BaseRequest {
 
     private static final long serialVersionUID = -98216989525529271L;
@@ -49,6 +52,10 @@ public class ProjectManageRequest extends BaseRequest {
      * 项目版本 ID
      */
     private String projectVersionId;
+    /**
+     * 模型过期时间
+     */
+    private String date;
 
     private String folderId;
 

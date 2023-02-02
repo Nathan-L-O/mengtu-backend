@@ -158,7 +158,8 @@ public class ProjectVersionController {
             public Result<ProjectVersionVO> execute() {
                 ProjectRequestBuilder builder = ProjectRequestBuilder.getInstance()
                         .withUserId("202204241143307751750001202224")
-                        .withProjectId(request.getProjectId());
+                        .withProjectId(request.getProjectId())
+                        .withDate(request.getDate());
                 if (request.getFolderId()!=null){
                     linkPointFolderService.updateByFolderId(request.getFolderId());
                 }

@@ -1,6 +1,7 @@
 package com.mengtu.kaichi.model.linkpoint.request;
 
 import com.mengtu.kaichi.common.BaseRestRequest;
+import lombok.Data;
 
 /**
  * 项目请求
@@ -8,6 +9,7 @@ import com.mengtu.kaichi.common.BaseRestRequest;
  * @author 过昊天
  * @version 1.1 @ 2022/5/25 13:44
  */
+@Data
 public class ProjectRestRequest extends BaseRestRequest {
 
     private static final long serialVersionUID = -5870420958739320622L;
@@ -41,6 +43,11 @@ public class ProjectRestRequest extends BaseRestRequest {
      * 项目所在文件夹
      */
     private String folderId;
+
+    /**
+     * 模型过期时间
+     */
+    private String date;
 
 
     public String getDomainId() {

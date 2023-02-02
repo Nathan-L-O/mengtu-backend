@@ -1,6 +1,7 @@
 package com.mengtu.kaichi.serviceimpl.linkpoint.builder;
 
 import com.mengtu.kaichi.serviceimpl.linkpoint.request.ProjectRequest;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
  * @author 过昊天
  * @version 1.0 @ 2022/5/10 14:02
  */
+@Data
 final public class ProjectRequestBuilder {
 
     /**
@@ -50,6 +52,11 @@ final public class ProjectRequestBuilder {
 
     private String folderId;
 
+    /**
+     * 模型过期时间
+     */
+    private String date;
+
 
     /**
      * 拓展信息
@@ -71,6 +78,7 @@ final public class ProjectRequestBuilder {
         request.setUserId(userId);
         request.setExtInfo(extInfo);
         request.setFolderId(folderId);
+        request.setDate(date);
         return request;
     }
 
@@ -79,6 +87,11 @@ final public class ProjectRequestBuilder {
 
     public ProjectRequestBuilder withRequestId(String requestId) {
         this.requestId = requestId;
+        return this;
+    }
+
+    public ProjectRequestBuilder withDate(String date) {
+        this.date = date;
         return this;
     }
 
