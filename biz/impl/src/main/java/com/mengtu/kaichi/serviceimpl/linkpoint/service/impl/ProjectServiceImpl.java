@@ -127,6 +127,7 @@ public class ProjectServiceImpl implements ProjectService {
                     tempProjectBO.setModifyDate(projectVersionBO.getVersionTimestamp());
                 }
                 try {
+                    tempProjectBO.setDate(projectVersionBO.getDate());
                     tempProjectBO.putExtInfo("previewUrl", "http://192.168.3.8:8080/file?path=preview/linkpoint/&key=" + tempProjectBO.getProjectId());
                     tempProjectBO.putExtInfo("preview_uri", tempProjectBO.getProjectId());
                 } catch (Exception ignored) {

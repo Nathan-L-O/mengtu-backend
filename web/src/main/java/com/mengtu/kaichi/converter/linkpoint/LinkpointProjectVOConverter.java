@@ -41,6 +41,7 @@ final public class LinkpointProjectVOConverter {
         projectVO.setStatus(projectBO.getStatus());
         projectVO.setFolder(projectBO.getFolder());
         projectVO.setFolderId(projectBO.getFolderId());
+        projectVO.setDate(projectBO.getDate());
         projectVO.setPrincipalProject(projectBO.getPrincipalProject());
         if (projectBO.fetchExtInfo(USERNAME_INFO_KEY) != null) {
             projectVO.putExtInfo(USERNAME_INFO_KEY, projectBO.fetchExtInfo(USERNAME_INFO_KEY));

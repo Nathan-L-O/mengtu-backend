@@ -1,6 +1,7 @@
 package com.mengtu.kaichi.linkpoint.model;
 
 import com.mengtu.util.common.ToString;
+import lombok.Data;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
  * @author 过昊天
  * @version 1.0 @ 2022/5/10 10:43
  */
+@Data
 public class ProjectBO extends ToString {
 
     private static final long serialVersionUID = -1297082831114240855L;
@@ -40,6 +42,11 @@ public class ProjectBO extends ToString {
      * 项目描述
      */
     private String projectDescription;
+
+    /**
+     * 模型过期时间
+     */
+    private String date;
 
     /**
      * 项目状态
