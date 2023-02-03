@@ -24,6 +24,7 @@ final public class LinkpointProjectVersionVOConverter {
         projectVersionVO.setDomainId(projectVersionBO.getDomainId());
         projectVersionVO.setVersionTimestamp(projectVersionBO.getVersionTimestamp());
         projectVersionVO.setSignatureUrl("无");
+        projectVersionVO.setDate(projectVersionBO.getDate());
         projectVersionVO.putExtInfo("operatorId", projectVersionBO.fetchExtInfo("operator_id"));
         projectVersionVO.putExtInfo("operatorName", projectVersionBO.fetchExtInfo("operator_name"));
         return projectVersionVO;
