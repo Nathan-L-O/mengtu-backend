@@ -127,9 +127,8 @@ public class FileUtil {
             AssertUtil.assertTrue(toFile.createNewFile(), "服务端文件创建操作失败");
 
             FileOutputStream fos = new FileOutputStream(toFile);
-            BufferedOutputStream bfos = new BufferedOutputStream(fos);
 
-            long count = IOUtils.copyLarge(is, bfos);
+            long count = IOUtils.copyLarge(is, fos);
             AssertUtil.assertTrue(count > 0, "复制失败");
             fos.flush();
             fos.close();
