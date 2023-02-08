@@ -8,8 +8,8 @@ spring:
     allow-bean-definition-overriding: true
   servlet:
     multipart:
-      max-file-size: 600MB
-      max-request-size: 600MB
+      max-file-size: 1024MB
+      max-request-size: 1024MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://124.71.161.213:3306/mt-backend?serverTimezone=GMT%2b8
@@ -17,7 +17,7 @@ spring:
 #    password: XB3ZnWMhrySafxJz
     url: jdbc:mysql://192.168.3.8:3306/mtbe-kaichi?serverTimezone=GMT%2b8
     username: root
-    password: db_mt_2023
+    password: 123456
 #    url: jdbc:mysql://localhost:3306/mtbe-kaichi?serverTimezone=GMT%2b8
 #    username: root
 #    password: 1qaz2wsx

@@ -21,7 +21,7 @@ public class FileUtil {
     /**
      * 本地根路径
      */
-    private static final String ROOT_LOCATION = "/mnt/Data-8T/LinkPoint_Data/backend/";
+    private static final String ROOT_LOCATION = "F:\\Core_Data\\LinkPoint_Data\\backend\\";
 
     /**
      * MultipartFile -> File
