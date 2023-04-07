@@ -34,4 +34,8 @@ public class LinkPointFolder extends ToString {
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
+    @TableField(value = "delete_flag",fill = FieldFill.INSERT)
+    @TableLogic(value = "false", delval = "true")
+    private Boolean deleteFlag;
+
 }

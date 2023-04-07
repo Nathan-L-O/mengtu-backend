@@ -2,12 +2,13 @@ package com.mengtu.kaichi.serviceimpl.position.service;
 
 
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.mengtu.kaichi.position.pojo.LinkPointFolder;
 import com.mengtu.kaichi.position.pojo.Position;
 
 import java.util.List;
 
-public interface LinkPointFolderService {
+public interface LinkPointFolderService extends IService<LinkPointFolder> {
 
     /*根据类型id查找所有*/
     int insert(LinkPointFolder linkPointFolder);
@@ -17,5 +18,10 @@ public interface LinkPointFolderService {
     int updateByFolderId(String folderId);
 
     int update(LinkPointFolder linkPointFolder);
-
+    /**
+     * 根据id逻辑删除文件夹
+     * @param id
+     * @return
+     */
+    Integer deleteById(String id);
 }

@@ -1,5 +1,7 @@
 package com.mengtu.kaichi.controller.linkpoint;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.mengtu.kaichi.common.annotation.Limit;
 import com.mengtu.kaichi.common.annotation.ValidateToken;
 import com.mengtu.kaichi.common.log.LoggerName;
@@ -19,6 +21,8 @@ import com.mengtu.util.log.Log;
 import com.mengtu.util.tools.AssertUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -48,17 +52,17 @@ public class LinkPointFolderController {
     @PostMapping
     @Limit(threshold = 5)
     @Log(loggerName = LoggerName.WEB_DIGEST)
-    public Result<LinkPointFolder> createFolder(ProjectRestRequest request, HttpServletRequest httpServletRequest,LinkPointFolder linkPointFolder) {
+    public Result<LinkPointFolder> createFolder(ProjectRestRequest request, HttpServletRequest httpServletRequest, LinkPointFolder linkPointFolder) {
         return RestOperateTemplate.operate(LOGGER, "创建 LinkPoint 文件夹", request, new RestOperateCallBack<LinkPointFolder>() {
             @Override
             public void before() {
-              }
+            }
 
             @Override
             public Result<LinkPointFolder> execute() {
                 linkPointFolderService.insert(linkPointFolder);
                 return RestResultUtil.buildSuccessResult(
-                        linkPointFolder , "创建成功");
+                        linkPointFolder, "创建成功");
             }
         });
     }
@@ -73,18 +77,32 @@ public class LinkPointFolderController {
     @PutMapping
     @Limit(threshold = 5)
     @Log(loggerName = LoggerName.WEB_DIGEST)
-    public Result<LinkPointFolder> updateFolder(ProjectRestRequest request, HttpServletRequest httpServletRequest,LinkPointFolder linkPointFolder) {
+    public Result<LinkPointFolder> updateFolder(ProjectRestRequest request, HttpServletRequest httpServletRequest, LinkPointFolder linkPointFolder) {
         return RestOperateTemplate.operate(LOGGER, "创建 LinkPoint 文件夹", request, new RestOperateCallBack<LinkPointFolder>() {
             @Override
             public void before() {
-              }
+            }
 
             @Override
             public Result<LinkPointFolder> execute() {
                 linkPointFolderService.update(linkPointFolder);
                 return RestResultUtil.buildSuccessResult(
-                        linkPointFolder , "更新成功");
+                        linkPointFolder, "更新成功");
             }
         });
+    }
+
+    /**
+     * 根据id逻辑删除文件夹
+     * @param id
+     * @return
+     */
+    @GetMapping("/deleteById")
+    public Result deleteById(@RequestParam("id") String id) {
+        if (StrUtil.isEmpty(id)) {
+            return new Result(false, "466", "id不能为空");
+        }
+        Integer integer = linkPointFolderService.deleteById(id);
+        return new Result(true, "200","删除成功",integer);
     }
 }

@@ -1,6 +1,8 @@
 package com.mengtu.kaichi.serviceimpl.position;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mengtu.kaichi.position.mapper.LinkPointFolderMapper;
 import com.mengtu.kaichi.position.pojo.LinkPointFolder;
 import com.mengtu.kaichi.serviceimpl.position.service.LinkPointFolderService;
@@ -12,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class LinkPointFolderServiceImpl implements LinkPointFolderService {
+public class LinkPointFolderServiceImpl extends ServiceImpl<LinkPointFolderMapper, LinkPointFolder> implements LinkPointFolderService {
 
     @Resource
     private LinkPointFolderMapper linkPointFolderMapper;
@@ -27,7 +29,7 @@ public class LinkPointFolderServiceImpl implements LinkPointFolderService {
 
     @Override
     public List<LinkPointFolder> queryAll() {
-        return linkPointFolderMapper.selectList(null);
+        return linkPointFolderMapper.selectList(Wrappers.<LinkPointFolder>lambdaQuery().eq(LinkPointFolder::getDeleteFlag,false));
     }
 
     @Override
@@ -43,5 +45,10 @@ public class LinkPointFolderServiceImpl implements LinkPointFolderService {
         if (linkPointFolders.size()>0)
             throw new KaiChiException(RestResultCode.ILLEGAL_PARAMETERS, "文件名重复");
         return linkPointFolderMapper.updateById(linkPointFolder);
+    }
+
+    @Override
+    public Integer deleteById(String id) {
+        return linkPointFolderMapper.deleteById(id);
     }
 }

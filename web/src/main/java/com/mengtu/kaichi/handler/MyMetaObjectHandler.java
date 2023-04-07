@@ -20,6 +20,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 //        this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date()); // 起始版本 3.3.0(推荐)
         this.setFieldValByName("createTime",new Date(),metaObject);//这个会自动更新并覆盖
         this.setFieldValByName("updateTime",new Date(),metaObject);//这个会自动更新并覆盖
+        this.setFieldValByName("deleteFlag",false,metaObject);//这个会自动更新并覆盖
     }
 
     //更新时候启动
