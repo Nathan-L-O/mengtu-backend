@@ -81,8 +81,8 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         if (projectManageRequest.getFolderId() != null){
             projectBO.setFolderId(projectManageRequest.getFolderId());
 //            如果为改文件夹中创建的第一个项目，设置为主项目
-            if (linkpointProjectRepoService.queryByFolderId(projectManageRequest.getFolderId()).size()==0)
-                projectBO.setPrincipalProject(true);
+//            if (linkpointProjectRepoService.queryByFolderId(projectManageRequest.getFolderId()).size()==0)
+//                projectBO.setPrincipalProject(true);
         }
         projectBO = linkpointProjectRepoService.createProject(projectBO);
         AssertUtil.assertNotNull(projectBO, RestResultCode.PARTIAL_CONTENT, "初始化创建项目失败");
@@ -100,6 +100,8 @@ public class LinkpointProjectManagerImpl implements LinkpointProjectManager {
         projectBO.setArchiveStatus(projectManageRequest.getArchiveStatus());
         projectBO.setStatus(projectManageRequest.getStatus());
         projectBO.setExtInfo(projectManageRequest.getExtInfo());
+        projectBO.setFolderId(projectManageRequest.getFolderId());
+        projectBO.setIsPrincipalProject(projectManageRequest.getIsPrincipalProject());
         return linkpointProjectRepoService.updateProject(projectBO);
     }
 

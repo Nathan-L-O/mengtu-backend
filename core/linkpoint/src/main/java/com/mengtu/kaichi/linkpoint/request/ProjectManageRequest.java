@@ -59,6 +59,8 @@ public class ProjectManageRequest extends BaseRequest {
 
     private String folderId;
 
+    private Boolean isPrincipalProject;
+
 
     public String getProjectId() {
         return projectId;

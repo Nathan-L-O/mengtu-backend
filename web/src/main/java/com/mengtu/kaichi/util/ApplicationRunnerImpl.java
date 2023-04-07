@@ -25,8 +25,8 @@ public class ApplicationRunnerImpl implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        obsUtil.getInstance();
-        sensitiveFilterUtil.getInstance(obsUtil.download(obsUtil.fetchFile("adult/", "SensitiveFilter")));
+//        obsUtil.getInstance();
+//        sensitiveFilterUtil.getInstance(obsUtil.download(obsUtil.fetchFile("adult/", "SensitiveFilter")));
     }
 
 }

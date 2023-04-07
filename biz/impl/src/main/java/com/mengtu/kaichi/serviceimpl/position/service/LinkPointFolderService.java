@@ -16,4 +16,6 @@ public interface LinkPointFolderService {
 
     int updateByFolderId(String folderId);
 
+    int update(LinkPointFolder linkPointFolder);
+
 }

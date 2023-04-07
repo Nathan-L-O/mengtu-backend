@@ -62,4 +62,29 @@ public class LinkPointFolderController {
             }
         });
     }
+
+    /**
+     * 重命名 LinkPoint 文件夹
+     *
+     * @param request
+     * @param httpServletRequest
+     * @return
+     */
+    @PutMapping
+    @Limit(threshold = 5)
+    @Log(loggerName = LoggerName.WEB_DIGEST)
+    public Result<LinkPointFolder> updateFolder(ProjectRestRequest request, HttpServletRequest httpServletRequest,LinkPointFolder linkPointFolder) {
+        return RestOperateTemplate.operate(LOGGER, "创建 LinkPoint 文件夹", request, new RestOperateCallBack<LinkPointFolder>() {
+            @Override
+            public void before() {
+              }
+
+            @Override
+            public Result<LinkPointFolder> execute() {
+                linkPointFolderService.update(linkPointFolder);
+                return RestResultUtil.buildSuccessResult(
+                        linkPointFolder , "更新成功");
+            }
+        });
+    }
 }

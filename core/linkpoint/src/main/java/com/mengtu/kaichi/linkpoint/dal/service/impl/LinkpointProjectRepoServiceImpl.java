@@ -81,6 +81,14 @@ public class LinkpointProjectRepoServiceImpl implements LinkpointProjectRepoServ
         if (newLinkpointProjectDO.getDomainId() != null) {
             linkpointProjectDO.setDomainId(newLinkpointProjectDO.getDomainId());
         }
+        if (newLinkpointProjectDO.getFolderId() != null) {
+            linkpointProjectDO.setFolderId(newLinkpointProjectDO.getFolderId());
+            if ("".equals(newLinkpointProjectDO.getFolderId()))
+                linkpointProjectDO.setFolderId(null);
+        }
+        if (newLinkpointProjectDO.getPrincipalProject() != null) {
+            linkpointProjectDO.setPrincipalProject(newLinkpointProjectDO.getPrincipalProject());
+        }
         if (projectBO.getExtInfo() == null) {
             linkpointProjectDO.setExtInfo(JSON.toJSONString(new HashMap<>(0)));
         } else if (!projectBO.getExtInfo().isEmpty()) {

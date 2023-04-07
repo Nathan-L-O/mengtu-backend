@@ -2,6 +2,7 @@ package com.mengtu.kaichi.serviceimpl.linkpoint.request;
 
 import com.mengtu.kaichi.linkpoint.request.ProjectManageRequest;
 import com.mengtu.kaichi.serviceimpl.common.verify.VerifyRequest;
+import lombok.Data;
 
 /**
  * linkpoint 项目请求
@@ -9,6 +10,7 @@ import com.mengtu.kaichi.serviceimpl.common.verify.VerifyRequest;
  * @author 过昊天
  * @version 1.0 @ 2022/4/26 10:34
  */
+@Data
 public class ProjectRequest extends ProjectManageRequest implements VerifyRequest {
 
     private static final long serialVersionUID = -1888920305515258266L;
@@ -52,6 +54,8 @@ public class ProjectRequest extends ProjectManageRequest implements VerifyReques
      * 项目版本 ID
      */
     private String folderId;
+
+    private Boolean isPrincipalProject;
 
     @Override
     public String getRequestId() {

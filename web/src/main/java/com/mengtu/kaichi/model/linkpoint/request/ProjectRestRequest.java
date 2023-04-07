@@ -45,6 +45,11 @@ public class ProjectRestRequest extends BaseRestRequest {
     private String folderId;
 
     /**
+     * 项目所在文件夹
+     */
+    private Boolean isPrincipalProject;
+
+    /**
      * 模型过期时间
      */
     private String date;
@@ -101,4 +106,5 @@ public class ProjectRestRequest extends BaseRestRequest {
     public void setFolderId(String folderId) {
         this.folderId = folderId;
     }
+
 }

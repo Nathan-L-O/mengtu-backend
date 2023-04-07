@@ -124,7 +124,9 @@ public class ProjectController {
                         .withProjectId(request.getProjectId())
                         .withProjectName(request.getProjectName())
                         .withProjectDescription(request.getProjectDescription())
-                        .withUserId("202204241143307751750001202224");
+                        .withUserId("202204241143307751750001202224")
+                        .withFolderId(request.getFolderId())
+                        .withIsPrincipalProject(request.getIsPrincipalProject());
 
                 return RestResultUtil.buildSuccessResult(
                         LinkpointProjectVOConverter.convert(projectService.update(builder.build())), "更新项目信息成功");

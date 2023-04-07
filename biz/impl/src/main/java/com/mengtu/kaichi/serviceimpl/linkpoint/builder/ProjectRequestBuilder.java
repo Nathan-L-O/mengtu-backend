@@ -52,6 +52,8 @@ final public class ProjectRequestBuilder {
 
     private String folderId;
 
+    private Boolean isPrincipalProject;
+
     /**
      * 模型过期时间
      */
@@ -79,6 +81,7 @@ final public class ProjectRequestBuilder {
         request.setExtInfo(extInfo);
         request.setFolderId(folderId);
         request.setDate(date);
+        request.setIsPrincipalProject(isPrincipalProject);
         return request;
     }
 
@@ -111,6 +114,10 @@ final public class ProjectRequestBuilder {
     }
     public ProjectRequestBuilder withFolderId(String folderId) {
         this.folderId = folderId;
+        return this;
+    }
+    public ProjectRequestBuilder withIsPrincipalProject(Boolean isPrincipalProject) {
+        this.isPrincipalProject = isPrincipalProject;
         return this;
     }
 
