@@ -6,6 +6,7 @@ import com.mengtu.kaichi.common.log.LoggerName;
 import com.mengtu.kaichi.common.template.RestOperateCallBack;
 import com.mengtu.kaichi.common.template.RestOperateTemplate;
 import com.mengtu.kaichi.converter.linkpoint.LinkpointProjectVOConverter;
+import com.mengtu.kaichi.linkpoint.dal.service.LinkpointProjectRepoService;
 import com.mengtu.kaichi.linkpoint.model.ProjectBO;
 import com.mengtu.kaichi.model.linkpoint.request.ProjectRestRequest;
 import com.mengtu.kaichi.model.linkpoint.vo.ProjectVO;
@@ -59,6 +60,9 @@ public class ProjectController {
 
     @Resource
     private LinkPointFolderService linkPointFolderService;
+
+    @Resource
+    private LinkpointProjectRepoService linkpointProjectRepoService;
 
     /**
      * 创建 LinkPoint 项目
@@ -198,6 +202,12 @@ public class ProjectController {
                     List<LinkPointFolder> linkPointFolders = linkPointFolderService.queryAll();
                     for (LinkPointFolder o:linkPointFolders) {
                         ProjectBO projectBO = new ProjectBO();
+                        List<ProjectBO> projectBOList = linkpointProjectRepoService.queryByFolderId(o.getId());
+                        if (projectBOList.size()>0){
+                            projectBO.putExtInfo("previewUrl", "http://192.168.3.8:8080/file?path=preview/linkpoint/&key=" + projectBOList.get(0).getProjectId());
+                        }else {
+                            projectBO.putExtInfo("previewUrl", "");
+                        }
                         projectBO.setFolder(true);
                         projectBO.setProjectId(o.getId());
                         projectBO.setFolderId(o.getId());
